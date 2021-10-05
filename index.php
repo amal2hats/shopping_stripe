@@ -7,8 +7,14 @@ $productList = $prodObj->getProducts();
  
 <div class="jumbotron text-center">
   <h1>The Shopping Stripe</h1>
-  <p>Stripe enabled shopping cart demo</p> 
+  <p>Stripe enabled shopping cart demo</p>  
+  <?php if(isset($_SESSION['login_user'])){ ?>
+    <a class="btn btn-info" href="user.php?logout=true">Logout</a> 
+  <?php }else{ ?>
+    <a class="btn btn-info" href="user.php">User Login</a> 
+    <?php } ?>
 </div>
+ 
   
 <div class="container">
   <div class="row">

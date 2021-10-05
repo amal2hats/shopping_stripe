@@ -19,8 +19,7 @@ class Proucts_model{
         echo "Connection failed: " . $e->getMessage();
       }
   }
-
-
+ 
   public function getProducts()
   {
     $sql = "SELECT * FROM products";
@@ -30,14 +29,17 @@ class Proucts_model{
 
   public function setProducts()
   {
-    
+    $sql = "INSERT INTO products (name, price, description)
+    VALUES ('".$_POST["name"]."','".$_POST["price"]."' ,'".$_POST["description"]."')";
+    $stmt = $this->conn->prepare($sql); 
+     $stmt->execute();
   }
 
   public function updateProducts($id)
   {
-   /* $sql = "UPDATE products SET name='".$_POST["name"]."',price='".$_POST["price"]."' ,description = '".$_POST["description"]."' WHERE id=".$id;
-    $conn->exec($sql);
-    echo "New record created successfully"; */
+     $sql = "UPDATE products SET name='".$_POST["name"]."',price='".$_POST["price"]."' ,description = '".$_POST["description"]."' WHERE id=".$id; 
+     $stmt = $this->conn->prepare($sql); 
+     $stmt->execute();
   }
 
 
