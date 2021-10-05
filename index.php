@@ -1,11 +1,8 @@
 <?php
-include "_parts/header.php";
-?>
- <?php
+include "_parts/header.php"; 
 
-$sql = "SELECT * FROM products";
-$result = mysqli_query($conn, $sql);
-
+$prodObj = new Proucts_model();
+$productList = $prodObj->getProducts();
 ?>
  
 <div class="jumbotron text-center">
@@ -18,9 +15,9 @@ $result = mysqli_query($conn, $sql);
       <div class="col-md-12">
 
   <?php  
-    if (mysqli_num_rows($result) > 0) {
+    if (count($productList) > 0) {
     
-    while($row = mysqli_fetch_assoc($result)) { // $row["id"]  ?>
+    foreach($productList as $row) { // $row["id"]  ?>
         
   
         <div class="card col-md-3">
