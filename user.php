@@ -18,11 +18,15 @@ if(isset($_SESSION['login_user'])){
 
 if(isset($_POST['login'])){
  
-  $user = $userObj->getUser(); 
+  $user = $userObj->getUserLogin(); 
   
   if($user!=false)
   {
     $_SESSION['login_user'] = $user['id'];
+    header("Location: index.php");
+    die();
+  }else{
+    echo 'Login failed!';
   }
 
 }
@@ -31,15 +35,13 @@ if(isset($_POST['register'])){
  
   $userObj->setUser();
 
-}
-
-
+} 
 ?>
 
 
 <div class="jumbotron text-center">
   <h1>The Shopping Stripe</h1>
-  <p>Cart page</p> 
+  <p>Login/Register page</p> 
 </div>
   
 <div class="container">

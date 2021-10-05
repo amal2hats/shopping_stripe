@@ -6,6 +6,20 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit4c7265e7b681f8c9da896dc180b1be8e
 {
+    public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Stripe\\' => 7,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Proucts_model' => __DIR__ . '/../..' . '/models/Proucts_model.php',
@@ -15,6 +29,8 @@ class ComposerStaticInit4c7265e7b681f8c9da896dc180b1be8e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4c7265e7b681f8c9da896dc180b1be8e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4c7265e7b681f8c9da896dc180b1be8e::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit4c7265e7b681f8c9da896dc180b1be8e::$classMap;
 
         }, null, ClassLoader::class);
