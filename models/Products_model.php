@@ -1,6 +1,6 @@
 <?php
 
-class Proucts_model{
+class Products_model{
 
   public $conn;
 
@@ -26,6 +26,14 @@ class Proucts_model{
     $result = $this->conn->query($sql);
     return $result->fetchAll(); 
   }
+
+  public function getProduct($id)
+  {
+    $sql = "SELECT * FROM products where id = ".$id;
+    $result = $this->conn->query($sql);
+    return $result->fetch(); 
+  }
+
 
   public function setProducts()
   {

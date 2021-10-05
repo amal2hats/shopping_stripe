@@ -1,6 +1,7 @@
 <?php 
 include "_parts/header.php";
 
+$prodObj = new Products_model(); 
 $stripe = new \Stripe\StripeClient([
     "api_key" => "sk_test_51J6wDiSGYK0hiF7IsHuoFviDn05HlQi5Y3aYqj4sHSsHtoBlNcenMOhaNEGmQ0lXcw1MPgMTObUQ2qcEPd5CVjrF005jZvDXsj",
     "stripe_version" => "2020-08-27"
@@ -13,6 +14,16 @@ if(isset($_SESSION['login_user'])){
     header("Location: user.php");
     die();
   }
+
+  $totalAmt = 0;
+    foreach($_SESSION['cart'] as $key => $item){ 
+
+        $prodDet = $prodObj->getProduct($key); 
+  
+        $totalAmt = $totalAmt + ($prodDet['price'] * $item['quantity']);
+
+    }
+
 ?> 
 
   
@@ -111,7 +122,14 @@ function stripeTokenHandler(token) {
   hiddenInput.setAttribute('type', 'hidden');
   hiddenInput.setAttribute('name', 'stripeToken');
   hiddenInput.setAttribute('value', token.id);
+  hiddenInput.setAttribute('totalAmt', '<?= $totalAmt ?>');
   form.appendChild(hiddenInput);
+
+  var hiddenInputAmt = document.createElement('input');
+  hiddenInputAmt.setAttribute('type', 'hidden');
+  hiddenInputAmt.setAttribute('name', 'totalAmt');
+  hiddenInputAmt.setAttribute('value', '<?= $totalAmt ?>'); 
+  form.appendChild(hiddenInputAmt);
 
   // Submit the form
   form.submit();

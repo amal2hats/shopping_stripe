@@ -5,10 +5,11 @@ include "_parts/header.php";
 // Token is created using Stripe Checkout or Elements!
 // Get the payment token ID submitted by the form:
 $token = $_POST['stripeToken'];
-
+$totAmt = (int)$_POST['totalAmt']*100;
+ 
 try {
     $charge = \Stripe\Charge::create([
-        'amount' => 999,
+        'amount' => (int)$totAmt*100,
         'currency' => 'inr',
         'description' => 'Example charge',
         'source' => $token,
