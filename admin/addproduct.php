@@ -13,11 +13,11 @@ if(isset($_POST['submit']))
 
   if(isset($_GET['id']) && $_GET['id'] != '')
   {
-    $sql = "UPDATE products SET name='".$_POST["name"]."',description = '".$_POST["description"]."' WHERE id=".$_GET['id'];
+    $sql = "UPDATE products SET name='".$_POST["name"]."',price='".$_POST["price"]."' ,description = '".$_POST["description"]."' WHERE id=".$_GET['id'];
   }else{
 
-    $sql = "INSERT INTO products (name, description)
-    VALUES ('".$_POST["name"]."', '".$_POST["description"]."')";
+    $sql = "INSERT INTO products (name, price, description)
+    VALUES ('".$_POST["name"]."','".$_POST["price"]."' ,'".$_POST["description"]."')";
    
   }
 
@@ -44,6 +44,11 @@ if(isset($_GET['id']) && $_GET['id'] != '')
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" name="name" class="form-control" id="name" value="<?= isset($prodDet['name'])?$prodDet['name']:'' ?>">
+  </div>
+
+   <div class="form-group">
+    <label for="price">Price</label>
+    <input type="number" name="price" class="form-control" id="price" value="<?= isset($prodDet['price'])?$prodDet['price']:'' ?>">
   </div>
   <div class="form-group">
     <label for="description">Description</label>

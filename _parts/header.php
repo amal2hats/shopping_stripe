@@ -2,14 +2,14 @@
 $servername = "localhost";
 $username = "root";
 $password = "2hatslogic";
-$dbname = "shopping_stripe";
-
- 
+$dbname = "shopping_stripe"; 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
  
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
+
+session_start();
 
 ?> 
 <!DOCTYPE html>

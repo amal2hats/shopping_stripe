@@ -22,14 +22,13 @@ $result = mysqli_query($conn, $sql);
     
     while($row = mysqli_fetch_assoc($result)) { // $row["id"]  ?>
         
- 
-
+  
         <div class="card col-md-3">
             <img src="assets/images/prod-image.jpeg" alt="Denim Jeans" style="width:200px">
             <h1><?= $row["name"] ?></h1>
-            <p class="price">$19.99</p>
+            <p class="price"><?= $row["price"] ?></p>
             <p>Some text about the jeans..</p>
-            <p><button>Add to Cart</button></p>
+            <p><button onclick="addtocart(<?= $row["id"] ?>,'<?= $row["name"] ?>')">Add to Cart</button></p>
         </div>
         
         <?php    
@@ -41,6 +40,29 @@ $result = mysqli_query($conn, $sql);
  </div>
   </div>
 </div>
+
+<script>
+
+function addtocart(prodId,prName)
+{
+  
+$.ajax({
+        url: "cart.php",
+        type: "post",
+        data: {'productId':prodId,'productName':prName} ,
+        success: function (response) {
+
+           alert('Added to cart');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+    });
+}
+
+
+
+</script>
 
 </body>
 </html>

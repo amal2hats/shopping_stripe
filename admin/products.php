@@ -4,6 +4,18 @@ include "_parts/header.php";
 
 <?php
 
+if(isset($_GET['delete']) && $_GET['delete'] != '')
+{ 
+  $sql = "DELETE FROM products WHERE id=".$_GET['delete'] ;
+  if (mysqli_query($conn, $sql)) {
+    echo "Record deleted successfully";
+    header("Location: products.php");
+    die();
+  } else {
+    echo "Error deleting record: " . mysqli_error($conn);
+  }
+}
+
 $sql = "SELECT * FROM products";
 $result = mysqli_query($conn, $sql);
 
@@ -17,6 +29,7 @@ $result = mysqli_query($conn, $sql);
       <tr>
         <th>Id</th>
         <th>Product name</th> 
+        <th>Product price</th> 
         <th>Actions</th> 
       </tr>
     </thead>
@@ -30,8 +43,9 @@ if (mysqli_num_rows($result) > 0) {
       <tr>
         <td><?= $row["id"] ?></td>
         <td><?= $row["name"] ?></td> 
-        <td><a href="">Edit</a></td> 
-        <td><a href="">Delete</a></td> 
+        <td><?= $row["price"] ?></td> 
+        <td><a href="addproduct.php?id=<?= $row["id"] ?>">Edit</a></td> 
+        <td><a onclick="return confirm('Are you sure you delete this product?')" href="products.php?delete=<?= $row["id"] ?>">Delete</a></td> 
       </tr>
        
       <?php    
