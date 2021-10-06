@@ -1,12 +1,15 @@
 <?php 
-include "_parts/header.php";
+include "_parts/header.php"; 
+$ordObj = new Order_model(); 
+
 \Stripe\Stripe::setApiKey('sk_test_51J6wDiSGYK0hiF7IsHuoFviDn05HlQi5Y3aYqj4sHSsHtoBlNcenMOhaNEGmQ0lXcw1MPgMTObUQ2qcEPd5CVjrF005jZvDXsj');
 
 // Token is created using Stripe Checkout or Elements!
 // Get the payment token ID submitted by the form:
 $token = $_POST['stripeToken'];
-$totAmt = (int)$_POST['totalAmt']*100;
- 
+$totAmt = (int)$_POST['totalAmt']*100; 
+$login_user = $_POST['login_user'];
+
 try {
     $charge = \Stripe\Charge::create([
         'amount' => (int)$totAmt*100,
@@ -32,8 +35,10 @@ try {
   {
       echo 'Payment failed';
   }else{
-
-        var_dump($charge); 
+        $ordObj->setOrder($login_user,$charge->id,$charge->status,json_encode($charge),json_encode($_SESSION['cart']),(int)$_POST['totalAmt']); 
+        unset($_SESSION['cart']);
+        header("Location: index.php");
+        die();
   }
 
 ?>

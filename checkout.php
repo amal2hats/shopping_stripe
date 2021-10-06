@@ -121,8 +121,7 @@ function stripeTokenHandler(token) {
   var hiddenInput = document.createElement('input');
   hiddenInput.setAttribute('type', 'hidden');
   hiddenInput.setAttribute('name', 'stripeToken');
-  hiddenInput.setAttribute('value', token.id);
-  hiddenInput.setAttribute('totalAmt', '<?= $totalAmt ?>');
+  hiddenInput.setAttribute('value', token.id); 
   form.appendChild(hiddenInput);
 
   var hiddenInputAmt = document.createElement('input');
@@ -130,6 +129,13 @@ function stripeTokenHandler(token) {
   hiddenInputAmt.setAttribute('name', 'totalAmt');
   hiddenInputAmt.setAttribute('value', '<?= $totalAmt ?>'); 
   form.appendChild(hiddenInputAmt);
+
+   var hiddenInputcus = document.createElement('input');
+   hiddenInputcus.setAttribute('type', 'hidden');
+   hiddenInputcus.setAttribute('name', 'login_user');
+   hiddenInputcus.setAttribute('value', '<?= $_SESSION['login_user'] ?>'); 
+  form.appendChild(hiddenInputcus);
+
 
   // Submit the form
   form.submit();
