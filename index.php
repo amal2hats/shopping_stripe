@@ -1,7 +1,7 @@
 <?php
 include "_parts/header.php"; 
 
-$prodObj = new Proucts_model();
+$prodObj = new Products_model();
 $productList = $prodObj->getProducts();
 ?>
  
