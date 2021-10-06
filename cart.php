@@ -30,7 +30,7 @@ if(isset($_POST['productId']) && $_POST['productId'] != '')
   
             <tr>
                 <td><?= $item['name'] ?></td>
-                <td><?= $item['Quantity'] ?></td>
+                <td><?= $item['quantity'] ?></td>
                
             </tr>
 
@@ -39,6 +39,8 @@ if(isset($_POST['productId']) && $_POST['productId'] != '')
     </tbody>
 
       </table>
+
+      <a class="btn btn-default" href="checkout.php">Checkout</a>
   </div>
 </div> 
 </body>

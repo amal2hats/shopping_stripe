@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "classmap": ["models"]
+    },
+    "require": {
+        "stripe/stripe-php": "^7.97"
+    }
+}

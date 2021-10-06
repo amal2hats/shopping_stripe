@@ -1,1 +1,1 @@
-# shopping_stripe
+# shopping_stripe_structured
