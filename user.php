@@ -1,27 +1,26 @@
-<?php 
-include "templates/header.php"; 
-$users = new Users();  
-if(isset($_GET['logout'])){ 
-   session_unset(); 
-} 
-if(isset($_SESSION['login_user'])){ 
-  header("Location: index.php");
-  die(); 
-} 
-if(isset($_POST['login'])){ 
-  $user = $users->getUserLogin();  
-  if($user!=false)
-  {
-    $_SESSION['login_user'] = $user['id'];
+<?php
+include "templates/header.php";
+$users = new Users();
+if (isset($_GET['logout'])) {
+    session_unset();
+}
+if (isset($_SESSION['login_user'])) {
     header("Location: index.php");
     die();
-  }else{
-    echo 'Login failed!';
-  } 
-} 
-if(isset($_POST['register'])){ 
-  $users->setUser(); 
-} 
+}
+if (isset($_POST['login'])) {
+    $user = $users->getUserLogin();
+    if ($user!=false) {
+        $_SESSION['login_user'] = $user['id'];
+        header("Location: index.php");
+        die();
+    } else {
+        echo 'Login failed!';
+    }
+}
+if (isset($_POST['register'])) {
+    $users->set();
+}
 ?> 
 <div class="jumbotron text-center">
   <h1>The Shopping Stripe</h1>
