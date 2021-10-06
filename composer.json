@@ -1,6 +1,9 @@
 {
     "autoload": {
-        "classmap": ["models"]
+        "classmap": ["models"],
+        "files": [
+            "config.php" 
+        ]
     },
     "require": {
         "stripe/stripe-php": "^7.97"

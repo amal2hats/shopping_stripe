@@ -1,6 +1,5 @@
 <?php
 include "templates/header.php";
-include "config.php";
 $products = new Products();
 $stripe = new \Stripe\StripeClient([
     "api_key" => STRIPE_SECRET_KEY,

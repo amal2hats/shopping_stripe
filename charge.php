@@ -1,6 +1,5 @@
 <?php
 include "templates/header.php";
-include "config.php";
 $orders = new Order();
 \Stripe\Stripe::setApiKey(STRIPE_SECRET_KEY);
 $token = $_POST['stripeToken'];
