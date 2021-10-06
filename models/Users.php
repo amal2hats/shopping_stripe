@@ -1,6 +1,6 @@
 <?php
 
-class Users_model extends Model{
+class Users extends Model{
  
  
   public function getUserLogin()

@@ -1,23 +1,23 @@
 <?php
-include "_parts/header.php"; 
+include "templates/header.php"; 
  
-$prodObj = new Products_model();
-$products = $prodObj->getProducts();
+$product = new Products();
+$products = $product->getProducts();
  
 if(isset($_POST['submit']))
 {
 
   if(isset($_GET['id']) && $_GET['id'] != '')
   {
-    $$prodObj->updateProduct($_GET['id']); 
+    $product->updateProduct($_GET['id']); 
   }else{
-    $prodObj->setProducts(); 
+    $product->setProducts(); 
   }
   
 }
 if(isset($_GET['id']) && $_GET['id'] != '')
 { 
-  $prodDet = $prodObj->getProduct($_GET['id']);
+  $prodDet = $product->getProduct($_GET['id']);
 }
  
 ?>
@@ -46,5 +46,5 @@ if(isset($_GET['id']) && $_GET['id'] != '')
 </div>
 
 <?php
-include "_parts/footer.php";
+include "templates/footer.php";
 ?>

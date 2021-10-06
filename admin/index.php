@@ -1,5 +1,5 @@
 <?php
-include "_parts/header.php";
+include "templates/header.php";
 ?>
  
 <div class="container">
@@ -8,5 +8,5 @@ include "_parts/header.php";
 </div>
 
 <?php
-include "_parts/footer.php";
+include "templates/footer.php";
 ?>

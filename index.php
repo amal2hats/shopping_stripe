@@ -1,8 +1,8 @@
 <?php
-include "_parts/header.php"; 
+include "templates/header.php"; 
 
-$prodObj = new Products_model();
-$productList = $prodObj->getProducts();
+$products = new Products();
+$productList = $products->getProducts();
 ?>
  
 <div class="jumbotron text-center">
@@ -21,17 +21,17 @@ $productList = $prodObj->getProducts();
       <div class="col-md-12">
 
   <?php  
-    if (count($productList) > 0) {
+    if ($productList != null) {
     
-    foreach($productList as $row) { // $row["id"]  ?>
+    foreach($productList as $product) {   ?>
         
   
         <div class="card col-md-3">
-            <img src="assets/images/prod-image.jpeg" alt="Denim Jeans" style="width:200px">
-            <h1><?= $row["name"] ?></h1>
-            <p class="price"><?= $row["price"] ?></p>
-            <p>Some text about the jeans..</p>
-            <p><button onclick="addtocart(<?= $row["id"] ?>,'<?= $row["name"] ?>')">Add to Cart</button></p>
+            <img src="assets/images/prod-image.jpeg" alt="image of <?= $product["name"] ?>" style="width:200px">
+            <h1><?= $product["name"] ?></h1>
+            <p class="price"><?= $product["price"] ?></p>
+            <p><?= $product["description"] ?></p>
+            <p><button onclick="addtocart(<?= $product["id"] ?>,'<?= $product["name"] ?>')">Add to Cart</button></p>
         </div>
         
         <?php    
@@ -42,30 +42,7 @@ $productList = $prodObj->getProducts();
   ?>
  </div>
   </div>
-</div>
-
-<script>
-
-function addtocart(prodId,prName)
-{
-  
-$.ajax({
-        url: "cart.php",
-        type: "post",
-        data: {'productId':prodId,'productName':prName} ,
-        success: function (response) {
-
-           alert('Added to cart');
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-           console.log(textStatus, errorThrown);
-        }
-    });
-}
-
-
-
-</script>
-
+</div> 
+<script src="assets/js/index.js"></script> 
 </body>
 </html>

@@ -1,25 +1,15 @@
 <?php 
-include "_parts/header.php";
- 
-$userObj = new Users_model(); 
-
-if(isset($_GET['logout'])){
- 
-   session_unset();
-
-}
-
-if(isset($_SESSION['login_user'])){
- 
+include "templates/header.php"; 
+$users = new Users();  
+if(isset($_GET['logout'])){ 
+   session_unset(); 
+} 
+if(isset($_SESSION['login_user'])){ 
   header("Location: index.php");
-  die();
-
-}
-
-if(isset($_POST['login'])){
- 
-  $user = $userObj->getUserLogin(); 
-  
+  die(); 
+} 
+if(isset($_POST['login'])){ 
+  $user = $users->getUserLogin();  
   if($user!=false)
   {
     $_SESSION['login_user'] = $user['id'];
@@ -27,18 +17,12 @@ if(isset($_POST['login'])){
     die();
   }else{
     echo 'Login failed!';
-  }
-
-}
-
-if(isset($_POST['register'])){
- 
-  $userObj->setUser();
-
+  } 
 } 
-?>
-
-
+if(isset($_POST['register'])){ 
+  $users->setUser(); 
+} 
+?> 
 <div class="jumbotron text-center">
   <h1>The Shopping Stripe</h1>
   <p>Login/Register page</p> 

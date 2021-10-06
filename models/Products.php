@@ -1,6 +1,6 @@
 <?php
 
-class Products_model extends Model{ 
+class Products extends Model{ 
   public function getProducts()
   {
     $sql = "SELECT * FROM products";

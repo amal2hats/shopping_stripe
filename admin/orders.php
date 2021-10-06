@@ -1,7 +1,7 @@
 <?php
-include "_parts/header.php";  
-$orderObj = new Order_model(); 
-$orders = $orderObj->getOrders(); 
+include "templates/header.php";  
+$order = new Order(); 
+$orders = $order->getOrders(); 
 ?> 
 <div class="container">
   <h3>Orders</h3> 
@@ -18,14 +18,14 @@ $orders = $orderObj->getOrders();
     <tbody>
 
     <?php  
-if (count($orders) > 0) { 
-  foreach($orders as $row) { ?>
+if ($orders != null) { 
+  foreach($orders as $order) { ?>
     
       <tr>
-        <td><?= $row["id"] ?></td>
-        <td><?= $row["name"] ?></td>  
-        <td><?= $row["total_amount"] ?></td>  
-        <td><a href="vieworder.php?id=<?= $row["id"] ?>">View details</a></td>  
+        <td><?= $order["id"] ?></td>
+        <td><?= $order["name"] ?></td>  
+        <td><?= $order["total_amount"] ?></td>  
+        <td><a href="vieworder.php?id=<?= $order["id"] ?>">View details</a></td>  
       </tr>
        
       <?php    
@@ -39,5 +39,5 @@ if (count($orders) > 0) {
   
 </div> 
 <?php
-include "_parts/footer.php";
+include "templates/footer.php";
 ?>

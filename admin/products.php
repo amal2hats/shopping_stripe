@@ -1,7 +1,7 @@
 <?php
-include "_parts/header.php";  
-$prodObj = new Products_model();
-$products = $prodObj->getProducts(); 
+include "templates/header.php";  
+$product = new Products();
+$products = $product->getProducts(); 
 ?> 
 <div class="container">
   <h3>Products</h3> <a href="addproduct.php" class="btn btn-success">New Product</a>
@@ -19,13 +19,13 @@ $products = $prodObj->getProducts();
     <?php  
 if (count($products) > 0) {
   
-  foreach($products as $row) { ?>
+  foreach($products as $product) { ?>
     
       <tr>
-        <td><?= $row["id"] ?></td>
-        <td><?= $row["name"] ?></td> 
-        <td><a href="addproduct.php?id=<?= $row["id"] ?>">Edit</a></td> 
-        <td><a onclick="return confirm('Are you sure you delete this product?')" href="products.php?delete=<?= $row["id"] ?>">Delete</a></td> 
+        <td><?= $product["id"] ?></td>
+        <td><?= $product["name"] ?></td> 
+        <td><a href="addproduct.php?id=<?= $product["id"] ?>">Edit</a></td> 
+        <td><a onclick="return confirm('Are you sure you delete this product?')" href="products.php?delete=<?= $product["id"] ?>">Delete</a></td> 
       </tr>
        
       <?php    
@@ -39,5 +39,5 @@ if (count($products) > 0) {
   
 </div> 
 <?php
-include "_parts/footer.php";
+include "templates/footer.php";
 ?>

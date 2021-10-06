@@ -1,6 +1,6 @@
 <?php
 
-class Order_model extends Model
+class Order extends Model
 {
     public function setOrder($login_user,$txn_id,$payment_status,$payment_response,$products,$totalAmt){
 

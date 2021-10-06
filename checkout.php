@@ -1,15 +1,15 @@
 <?php 
-include "_parts/header.php";
-
-$prodObj = new Products_model(); 
+include "templates/header.php";
+include "config.php";
+$products = new Products(); 
 $stripe = new \Stripe\StripeClient([
-    "api_key" => "sk_test_51J6wDiSGYK0hiF7IsHuoFviDn05HlQi5Y3aYqj4sHSsHtoBlNcenMOhaNEGmQ0lXcw1MPgMTObUQ2qcEPd5CVjrF005jZvDXsj",
+    "api_key" => STRIPE_SECRET_KEY,
     "stripe_version" => "2020-08-27"
   ]);  
 
-$userObj = new Users_model(); 
+$users = new Users(); 
 if(isset($_SESSION['login_user'])){ 
-        $userDetails = $userObj->getUser($_SESSION['login_user']);
+        $userDetails = $users->getUser($_SESSION['login_user']);
   }else{
     header("Location: user.php");
     die();
@@ -18,20 +18,18 @@ if(isset($_SESSION['login_user'])){
   $totalAmt = 0;
     foreach($_SESSION['cart'] as $key => $item){ 
 
-        $prodDet = $prodObj->getProduct($key); 
+        $prodDet = $products->getProduct($key); 
   
         $totalAmt = $totalAmt + ($prodDet['price'] * $item['quantity']);
 
     }
 
-?> 
- 
+?>  
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-    var stripe = Stripe('pk_test_51J6wDiSGYK0hiF7IbeV88DBGKkuBGRTlHSVMYyKXmuDVkQ4gGJyFuGGC4VPKI7shhu2estOPqBZgy3cNJM0yFCDw00d1LFQj8L');
+    var stripe = Stripe('<?= STRIPE_PUBLIC_KEY ?>');
     var elements = stripe.elements(); 
-</script>
-
+</script> 
 <div class="jumbotron text-center">
   <h1>The Shopping Stripe</h1>
   <p>Checkout page</p> 
@@ -41,7 +39,7 @@ if(isset($_SESSION['login_user'])){
     <div class="col-md-12"> 
       <div class="col-md-6">
           <h2>Shipping address</h2>
-            <form action="charge.php" method="post" id="payment-form">
+            <form action="charge.php" method="post" id="payment-form"> 
             <div class="form-group">
               <label for="name">Name:</label>
               <input type="text" class="form-control" name="name" value="<?= $userDetails['name'] ?>">
@@ -55,9 +53,7 @@ if(isset($_SESSION['login_user'])){
             <div class="form-group">
               <label for="address">Address:</label>
               <textarea class="form-control" name="address" name="address"><?= $userDetails['address'] ?></textarea>
-            </div>
-
-
+            </div> 
             <div class="form-row">
                 <label for="card-element">
                 Credit or debit card
@@ -74,62 +70,18 @@ if(isset($_SESSION['login_user'])){
     </div>
   </div>
 </div> 
-</body>
-
-<script> 
-var style = {
-  base: { 
-    fontSize: '16px',
-    color: '#32325d',
-  },
-};
- 
-var card = elements.create('card', {style: style});
- 
-card.mount('#card-element');
-
-</script>
- 
 <script> 
 var form = document.getElementById('payment-form');
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  stripe.createToken(card).then(function(result) {
-    if (result.error) { 
-      var errorElement = document.getElementById('card-errors');
-      errorElement.textContent = result.error.message;
-    } else { 
-      stripeTokenHandler(result.token);
-    }
-  });
-});
-
-function stripeTokenHandler(token) { 
-  var form = document.getElementById('payment-form');
-  var hiddenInput = document.createElement('input');
-  hiddenInput.setAttribute('type', 'hidden');
-  hiddenInput.setAttribute('name', 'stripeToken');
-  hiddenInput.setAttribute('value', token.id); 
-  form.appendChild(hiddenInput);
-
-  var hiddenInputAmt = document.createElement('input');
+var hiddenInputAmt = document.createElement('input');
   hiddenInputAmt.setAttribute('type', 'hidden');
   hiddenInputAmt.setAttribute('name', 'totalAmt');
   hiddenInputAmt.setAttribute('value', '<?= $totalAmt ?>'); 
   form.appendChild(hiddenInputAmt);
-
-   var hiddenInputcus = document.createElement('input');
-   hiddenInputcus.setAttribute('type', 'hidden');
-   hiddenInputcus.setAttribute('name', 'login_user');
-   hiddenInputcus.setAttribute('value', '<?= $_SESSION['login_user'] ?>'); 
-  form.appendChild(hiddenInputcus);
  
-  form.submit();
-}
-
 </script>
- 
+
+<script src="assets/js/checkout.js"></script>
+</body> 
 </html>
 
 

@@ -1,10 +1,11 @@
 <?php 
-include "_parts/header.php"; 
-$ordObj = new Order_model();  
-\Stripe\Stripe::setApiKey('sk_test_51J6wDiSGYK0hiF7IsHuoFviDn05HlQi5Y3aYqj4sHSsHtoBlNcenMOhaNEGmQ0lXcw1MPgMTObUQ2qcEPd5CVjrF005jZvDXsj'); 
+include "templates/header.php"; 
+include "config.php";
+$orders = new Order();  
+\Stripe\Stripe::setApiKey(STRIPE_SECRET_KEY); 
 $token = $_POST['stripeToken'];
 $totAmt = (int)$_POST['totalAmt']*100; 
-$login_user = $_POST['login_user'];
+$login_user = $_SESSION['login_user'];
 
 try {
     $charge = \Stripe\Charge::create([
@@ -31,8 +32,8 @@ try {
   {
       echo 'Payment failed';
   }else{
-        $ordObj->setOrder($login_user,$charge->id,$charge->status,json_encode($charge),json_encode($_SESSION['cart']),(int)$_POST['totalAmt']); 
-        unset($_SESSION['cart']);
+        $orders->setOrder($login_user,$charge->id,$charge->status,json_encode($charge),json_encode($_SESSION['cart']),(int)$_POST['totalAmt']); 
+        unset($_SESSION['cart']); 
         header("Location: index.php");
         die();
   }
