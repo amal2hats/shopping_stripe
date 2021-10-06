@@ -26,7 +26,7 @@ class Products_model extends Model{
      $stmt->execute();
   }
 
-  public function updateProducts($id)
+  public function updateProduct($id)
   {
      $sql = "UPDATE products SET name='".$_POST["name"]."',price='".$_POST["price"]."' ,description = '".$_POST["description"]."' WHERE id=".$id; 
      $stmt = $this->conn->prepare($sql); 

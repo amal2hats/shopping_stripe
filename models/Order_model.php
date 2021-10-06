@@ -10,6 +10,20 @@ class Order_model extends Model
         $stmt->execute();  
         
     }
+    public function getOrders(){
+
+        $sql = "SELECT orders.*,users.name FROM `orders` join users on(users.id = orders.user_id);";
+        $result = $this->conn->query($sql);
+        return $result->fetchAll(); 
+        
+    }
+    public function getOrder($id){
+
+        $sql = "SELECT orders.*,users.name FROM `orders` join users on(users.id = orders.user_id) WHERE orders.id = ".$id;
+        $result = $this->conn->query($sql);
+        return $result->fetch(); 
+        
+    }
 }
 
 ?>
