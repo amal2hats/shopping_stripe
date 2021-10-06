@@ -4,8 +4,7 @@ include "_parts/header.php";
 $orderObj = new Order_model(); 
 $orders = $orderObj->getOrders();
 
-?>
- 
+?> 
 <div class="container">
   <h3>Orders</h3> 
 
