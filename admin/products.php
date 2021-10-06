@@ -1,11 +1,8 @@
 <?php
-include "_parts/header.php"; 
- 
+include "_parts/header.php";  
 $prodObj = new Products_model();
-$products = $prodObj->getProducts();
-
-?>
- 
+$products = $prodObj->getProducts(); 
+?> 
 <div class="container">
   <h3>Products</h3> <a href="addproduct.php" class="btn btn-success">New Product</a>
 

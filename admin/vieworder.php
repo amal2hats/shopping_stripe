@@ -1,12 +1,12 @@
 <?php
-include "_parts/header.php"; 
-
+include "_parts/header.php";  
 if(isset($_GET['id']) && $_GET['id'] != '')
 { 
     $orderObj = new Order_model(); 
     $order = $orderObj->getOrder($_GET['id']);
 } 
-?> 
+
+if ($orders != null) { ?> 
 <div class="container">
   <h3>Order details</h3> 
   <div class="col-md-6"> 
@@ -38,6 +38,15 @@ if(isset($_GET['id']) && $_GET['id'] != '')
         </tbody> 
   </table> 
 </div> 
+
+<?php }else{ ?>
+
+    <div class="container">
+  <h4>Order details not found</h43>   
+   
+</div> 
+<?php } ?> 
+
 <?php
 include "_parts/footer.php";
 ?>

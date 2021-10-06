@@ -25,25 +25,20 @@ if(isset($_SESSION['login_user'])){
     }
 
 ?> 
-
-  
+ 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
     var stripe = Stripe('pk_test_51J6wDiSGYK0hiF7IbeV88DBGKkuBGRTlHSVMYyKXmuDVkQ4gGJyFuGGC4VPKI7shhu2estOPqBZgy3cNJM0yFCDw00d1LFQj8L');
-    var elements = stripe.elements();
-    
+    var elements = stripe.elements(); 
 </script>
 
 <div class="jumbotron text-center">
   <h1>The Shopping Stripe</h1>
   <p>Checkout page</p> 
-</div>
-  
+</div> 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-         
-
+    <div class="col-md-12"> 
       <div class="col-md-6">
           <h2>Shipping address</h2>
             <form action="charge.php" method="post" id="payment-form">
@@ -83,17 +78,14 @@ if(isset($_SESSION['login_user'])){
 
 <script> 
 var style = {
-  base: {
-    // Add your base input styles here. For example:
+  base: { 
     fontSize: '16px',
     color: '#32325d',
   },
 };
-
-// Create an instance of the card Element.
+ 
 var card = elements.create('card', {style: style});
-
-// Add an instance of the card Element into the `card-element` <div>.
+ 
 card.mount('#card-element');
 
 </script>
@@ -104,19 +96,16 @@ form.addEventListener('submit', function(event) {
   event.preventDefault();
 
   stripe.createToken(card).then(function(result) {
-    if (result.error) {
-      // Inform the customer that there was an error.
+    if (result.error) { 
       var errorElement = document.getElementById('card-errors');
       errorElement.textContent = result.error.message;
-    } else {
-      // Send the token to your server.
+    } else { 
       stripeTokenHandler(result.token);
     }
   });
 });
 
-function stripeTokenHandler(token) {
-  // Insert the token ID into the form so it gets submitted to the server
+function stripeTokenHandler(token) { 
   var form = document.getElementById('payment-form');
   var hiddenInput = document.createElement('input');
   hiddenInput.setAttribute('type', 'hidden');
@@ -135,9 +124,7 @@ function stripeTokenHandler(token) {
    hiddenInputcus.setAttribute('name', 'login_user');
    hiddenInputcus.setAttribute('value', '<?= $_SESSION['login_user'] ?>'); 
   form.appendChild(hiddenInputcus);
-
-
-  // Submit the form
+ 
   form.submit();
 }
 

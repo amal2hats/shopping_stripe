@@ -3,8 +3,8 @@ include "_parts/header.php";
 ?>
  
 <div class="container">
-  <h3>Basic Navbar Example</h3>
-  <p>A navigation bar is a navigation header that is placed at the top of the page.</p>
+  <h3>Admin of The shopping stripe</h3>
+  <p>manage shopping stripe app here</p>
 </div>
 
 <?php

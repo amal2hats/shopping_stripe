@@ -1,11 +1,7 @@
 <?php 
 include "_parts/header.php"; 
-$ordObj = new Order_model(); 
-
-\Stripe\Stripe::setApiKey('sk_test_51J6wDiSGYK0hiF7IsHuoFviDn05HlQi5Y3aYqj4sHSsHtoBlNcenMOhaNEGmQ0lXcw1MPgMTObUQ2qcEPd5CVjrF005jZvDXsj');
-
-// Token is created using Stripe Checkout or Elements!
-// Get the payment token ID submitted by the form:
+$ordObj = new Order_model();  
+\Stripe\Stripe::setApiKey('sk_test_51J6wDiSGYK0hiF7IsHuoFviDn05HlQi5Y3aYqj4sHSsHtoBlNcenMOhaNEGmQ0lXcw1MPgMTObUQ2qcEPd5CVjrF005jZvDXsj'); 
 $token = $_POST['stripeToken'];
 $totAmt = (int)$_POST['totalAmt']*100; 
 $login_user = $_POST['login_user'];

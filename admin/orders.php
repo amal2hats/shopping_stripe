@@ -1,9 +1,7 @@
 <?php
-include "_parts/header.php"; 
- 
+include "_parts/header.php";  
 $orderObj = new Order_model(); 
-$orders = $orderObj->getOrders();
-
+$orders = $orderObj->getOrders(); 
 ?> 
 <div class="container">
   <h3>Orders</h3> 
@@ -20,8 +18,7 @@ $orders = $orderObj->getOrders();
     <tbody>
 
     <?php  
-if (count($orders) > 0) {
-  
+if (count($orders) > 0) { 
   foreach($orders as $row) { ?>
     
       <tr>
