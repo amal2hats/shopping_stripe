@@ -1,5 +1,5 @@
 <?php 
-include "_parts/header.php";
+include "templates/header.php";
 
 if(isset($_POST['productId']) && $_POST['productId'] != '')
 { 
@@ -26,7 +26,7 @@ if(isset($_POST['productId']) && $_POST['productId'] != '')
 
         <tbody>
 
-        <?php foreach($_SESSION['cart'] as $key => $item){ ?> 
+        <?php if(isset($_SESSION['cart'])){foreach($_SESSION['cart'] as $key => $item){ ?> 
   
             <tr>
                 <td><?= $item['name'] ?></td>
@@ -34,7 +34,10 @@ if(isset($_POST['productId']) && $_POST['productId'] != '')
                
             </tr>
 
-        <?php } ?>
+        <?php } 
+      }else{ 
+        echo 'No items in cart'; 
+        } ?>
              
     </tbody>
 

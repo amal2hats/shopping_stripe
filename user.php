@@ -1,44 +1,27 @@
-<?php 
-include "_parts/header.php";
- 
-$userObj = new Users_model(); 
-
-if(isset($_GET['logout'])){
- 
-   session_unset();
-
+<?php
+include "templates/header.php";
+$users = new Users();
+if (isset($_GET['logout'])) {
+    session_unset();
 }
-
-if(isset($_SESSION['login_user'])){
- 
-  header("Location: index.php");
-  die();
-
-}
-
-if(isset($_POST['login'])){
- 
-  $user = $userObj->getUserLogin(); 
-  
-  if($user!=false)
-  {
-    $_SESSION['login_user'] = $user['id'];
+if (isset($_SESSION['login_user'])) {
     header("Location: index.php");
     die();
-  }else{
-    echo 'Login failed!';
-  }
-
 }
-
-if(isset($_POST['register'])){
- 
-  $userObj->setUser();
-
-} 
-?>
-
-
+if (isset($_POST['login'])) {
+    $user = $users->getUserLogin();
+    if ($user!=false) {
+        $_SESSION['login_user'] = $user['id'];
+        header("Location: index.php");
+        die();
+    } else {
+        echo 'Login failed!';
+    }
+}
+if (isset($_POST['register'])) {
+    $users->set();
+}
+?> 
 <div class="jumbotron text-center">
   <h1>The Shopping Stripe</h1>
   <p>Login/Register page</p> 
