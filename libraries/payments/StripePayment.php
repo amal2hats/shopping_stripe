@@ -1,5 +1,5 @@
 <?php
-
+include "libraries/payments/PaymentsBase.php";
 class StripePayment implements Paymentmethod
 {
     public function chargePayment()
