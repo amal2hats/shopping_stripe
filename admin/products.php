@@ -17,7 +17,6 @@ $products = $product->get();
     <tbody>
 
       <?php
-if (count($products) > 0) {
     foreach ($products as $product) { ?>
 
       <tr>
@@ -35,9 +34,6 @@ if (count($products) > 0) {
 
       <?php
     }
-} else {
-    echo "0 results";
-}
  ?>
     </tbody>
   </table>

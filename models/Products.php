@@ -7,11 +7,11 @@ class Products extends Model
         if ($id == 0) {
             $sql = "SELECT * FROM products";
             $result = $this->conn->query($sql);
-            return $result->fetchAll();
+            return $result->fetchAll() ?: [];
         } else {
             $sql = "SELECT * FROM products where id = ".$id;
             $result = $this->conn->query($sql);
-            return $result->fetch();
+            return $result->fetch() ?: [];
         }
     }
     public function set()

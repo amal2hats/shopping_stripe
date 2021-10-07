@@ -18,7 +18,6 @@ $orders = $order->get();
     <tbody>
 
       <?php
-if ($orders != null) {
     foreach ($orders as $order) { ?>
 
       <tr>
@@ -35,9 +34,6 @@ if ($orders != null) {
 
       <?php
     }
-} else {
-    echo "0 results";
-}
  ?>
     </tbody>
   </table>

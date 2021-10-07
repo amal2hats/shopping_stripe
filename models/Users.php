@@ -6,14 +6,14 @@ class Users extends Model
     {
         $sql = "SELECT * FROM users where phone = '".$_POST["phone"]."' and password = '".$_POST["password"]."'";
         $result = $this->conn->query($sql);
-        return $result->fetch();
+        return $result->fetch() ?: [];
     }
 
     public function get($id)
     {
         $sql = "SELECT * FROM users where id = '".$id."'";
         $result = $this->conn->query($sql);
-        return $result->fetch();
+        return $result->fetch() ?: [];
     }
  
     public function set()
