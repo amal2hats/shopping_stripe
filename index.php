@@ -21,7 +21,6 @@ $productList = $products->get();
     <div class="col-md-12">
 
       <?php
-    if ($productList != null) {
         foreach ($productList as $product) {   ?>
 
 
@@ -42,9 +41,6 @@ $productList = $products->get();
 
       <?php
         }
-    } else {
-        echo "0 results";
-    }
   ?>
     </div>
   </div>

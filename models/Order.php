@@ -14,11 +14,12 @@ class Order extends Model
         if ($id == 0) {
             $sql = "SELECT orders.*,users.name FROM `orders` join users on(users.id = orders.user_id);";
             $result = $this->conn->query($sql);
-            return $result->fetchAll();
+            return $result->fetchAll() ?: [];
+            ;
         } else {
             $sql = "SELECT orders.*,users.name FROM `orders` join users on(users.id = orders.user_id) WHERE orders.id = ".$id;
             $result = $this->conn->query($sql);
-            return $result->fetch();
+            return $result->fetch() ?: [];
         }
     }
 }

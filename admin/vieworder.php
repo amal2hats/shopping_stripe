@@ -5,7 +5,7 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
     $orderDetails = $order->get($_GET['id']);
 }
 
-if ($orderDetails != null) { ?>
+if (!empty($orderDetails)) { ?>
 <div class="container">
     <h3>Order details</h3>
     <div class="col-md-6">
