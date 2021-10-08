@@ -2,7 +2,8 @@
     "autoload": {
         "classmap": ["models"],
         "files": [
-            "config.php" 
+            "config.php",
+            "libraries/payments/PaymentsBase.php"
         ]
     },
     "require": {

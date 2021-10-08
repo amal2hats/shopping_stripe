@@ -1,9 +1,8 @@
 <?php
-
-include "libraries/payments/PaymentsBase.php";
+ 
 class PaypalPayment implements Paymentmethod
 {
-    public function chargePayment()
+    public function charge()
     {
         echo 'payment succesful';
     }
