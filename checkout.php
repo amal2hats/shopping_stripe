@@ -1,6 +1,5 @@
 <?php
 include "templates/header.php";
-$products = new Products();
 $users = new Users();
 if (isset($_SESSION['login_user'])) {
     $userDetails = $users->get($_SESSION['login_user']);
@@ -8,14 +7,6 @@ if (isset($_SESSION['login_user'])) {
     header("Location: user.php");
     die();
 }
-
-  $totalAmt = 0;
-    foreach ($_SESSION['cart'] as $key => $item) {
-        $prodDet = $products->get($key);
-
-        $totalAmt = $totalAmt + ($prodDet['price'] * $item['quantity']);
-    }
-
 ?>
 
 <div class="jumbotron text-center">
@@ -61,15 +52,6 @@ if (isset($_SESSION['login_user'])) {
     </div>
   </div>
 </div>
-
-<script>
-  var form = document.getElementById('payment-form');
-  var hiddenInputAmt = document.createElement('input');
-  hiddenInputAmt.setAttribute('type', 'hidden');
-  hiddenInputAmt.setAttribute('name', 'totalAmt');
-  hiddenInputAmt.setAttribute('value', '<?= $totalAmt ?>');
-  form.appendChild(hiddenInputAmt);
-</script>
 
 <script src="assets/js/checkout.js"></script>
 </body>

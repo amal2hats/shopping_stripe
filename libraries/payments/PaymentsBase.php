@@ -2,5 +2,5 @@
 
 interface PaymentMethod
 {
-    public function charge();
+    public function charge($totalAmount);
 }

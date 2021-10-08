@@ -2,7 +2,7 @@
  
 class PaypalPayment implements Paymentmethod
 {
-    public function charge()
+    public function charge($totalAmount)
     {
         echo 'payment succesful';
     }

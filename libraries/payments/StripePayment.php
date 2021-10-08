@@ -1,12 +1,12 @@
 <?php
 class StripePayment implements PaymentMethod
 {
-    public function charge()
+    public function charge($totalAmount)
     {
         $charge = null;
         \Stripe\Stripe::setApiKey(STRIPE_SECRET_KEY);
         $token = $_POST['stripeToken'];
-        $totAmt = (int)$_POST['totalAmt']*100;
+        $totAmt = (int)$totalAmount*100;
 
         try {
             $charge = \Stripe\Charge::create([
