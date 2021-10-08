@@ -1,6 +1,6 @@
 <?php
 
-interface Paymentmethod
+interface PaymentMethod
 {
-    public function chargePayment();
+    public function charge();
 }

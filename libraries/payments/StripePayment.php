@@ -1,14 +1,12 @@
 <?php
-include "libraries/payments/PaymentsBase.php";
-class StripePayment implements Paymentmethod
+class StripePayment implements PaymentMethod
 {
-    public function chargePayment()
+    public function charge()
     {
-        $orders = new Order();
+        $charge = null;
         \Stripe\Stripe::setApiKey(STRIPE_SECRET_KEY);
         $token = $_POST['stripeToken'];
         $totAmt = (int)$_POST['totalAmt']*100;
-        $login_user = $_SESSION['login_user'];
 
         try {
             $charge = \Stripe\Charge::create([
@@ -30,14 +28,6 @@ class StripePayment implements Paymentmethod
         } catch (Exception $e) {
             echo 'Payment failed';
         }
-
-        if ($charge == null) {
-            echo 'Payment failed';
-        } else {
-            $orders->set($login_user, $charge->id, $charge->status, json_encode($charge), json_encode($_SESSION['cart']), (int)$_POST['totalAmt']);
-            unset($_SESSION['cart']);
-            header("Location: index.php");
-            die();
-        }
+        return $charge;
     }
 }

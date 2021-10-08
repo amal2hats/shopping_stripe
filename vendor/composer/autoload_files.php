@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'cfe4039aa2a78ca88e07dadb7b1c6126' => $baseDir . '/config.php',
+    'f576a663328a09c6d11002c1d4360beb' => $baseDir . '/libraries/payments/PaymentsBase.php',
 );
