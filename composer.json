@@ -3,7 +3,8 @@
         "classmap": ["models"],
         "files": [
             "config.php",
-            "libraries/payments/PaymentsBase.php"
+            "libraries/payments/PaymentsBase.php",
+            "libraries/checkout/Checkout.php"
         ]
     },
     "require": {

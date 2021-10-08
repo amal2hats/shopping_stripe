@@ -9,6 +9,7 @@ class ComposerStaticInit4c7265e7b681f8c9da896dc180b1be8e
     public static $files = array (
         'cfe4039aa2a78ca88e07dadb7b1c6126' => __DIR__ . '/../..' . '/config.php',
         'f576a663328a09c6d11002c1d4360beb' => __DIR__ . '/../..' . '/libraries/payments/PaymentsBase.php',
+        '278c1a707ba4a5aebab82e366884c978' => __DIR__ . '/../..' . '/libraries/checkout/Checkout.php',
     );
 
     public static $prefixLengthsPsr4 = array (

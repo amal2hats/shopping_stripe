@@ -1,10 +1,6 @@
 <?php
 include "templates/header.php";
 $products = new Products();
-$stripe = new \Stripe\StripeClient([
-    "api_key" => STRIPE_SECRET_KEY,
-    "stripe_version" => "2020-08-27"
-  ]);
 $users = new Users();
 if (isset($_SESSION['login_user'])) {
     $userDetails = $users->get($_SESSION['login_user']);
@@ -21,11 +17,7 @@ if (isset($_SESSION['login_user'])) {
     }
 
 ?>
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-  var stripe = Stripe('<?= STRIPE_PUBLIC_KEY ?>');
-  var elements = stripe.elements();
-</script>
+
 <div class="jumbotron text-center">
   <h1>The Shopping Stripe</h1>
   <p>Checkout page</p>
@@ -69,6 +61,7 @@ if (isset($_SESSION['login_user'])) {
     </div>
   </div>
 </div>
+
 <script>
   var form = document.getElementById('payment-form');
   var hiddenInputAmt = document.createElement('input');
